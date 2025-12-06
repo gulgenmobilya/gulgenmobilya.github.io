@@ -1,0 +1,681 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gülgen Mobilya - Özel Tasarım Marangozluk</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style> 
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            user-select: none;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: #f8f9fa;
+        }
+
+        /* Header & Navigation */
+        .header {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            background: linear-gradient(135deg, #8B4513, #A0522D);
+            padding: 1rem 0;
+            box-shadow: 0 2px 20px rgba(139, 69, 19, 0.3);
+            backdrop-filter: blur(10px);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 2rem;
+        }
+
+        .logo {
+            color: #F4A460;
+            font-size: 2rem;
+            font-weight: bold;
+            text-decoration: none;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-menu a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+        }
+
+        .nav-menu a:hover {
+            color: #F4A460;
+            background: rgba(244, 164, 96, 0.2);
+            transform: translateY(-2px);
+        }
+
+        .whatsapp-btn {
+            background: #25d366;
+            color: white;
+            padding: 0.8rem 1.5rem;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: transform 0.3s;
+        }
+
+        .whatsapp-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(37, 211, 102, 0.3);
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, rgba(139,69,19,0.9), rgba(160,82,45,0.8)), 
+                        url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 600"><defs><pattern id="wood" patternUnits="userSpaceOnUse" width="60" height="60"><rect width="60" height="60" fill="%23D2B48C"/><path d="M0,30 Q15,20 30,30 T60,30" stroke="%23CD853F" stroke-width="2" fill="none"/><path d="M0,45 Q20,35 40,45 T80,45" stroke="%23DEB887" stroke-width="1" fill="none"/></pattern></defs><rect width="1200" height="600" fill="url(%23wood)"/><g fill="%23A0522D" opacity="0.3"><rect x="100" y="200" width="200" height="200" rx="10"/><rect x="400" y="150" width="300" height="300" rx="15"/><rect x="800" y="180" width="250" height="240" rx="12"/></g></svg>');
+            background-size: cover;
+            background-position: center;
+            height: 85vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+            position: relative;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(45deg, rgba(139,69,19,0.1) 0%, rgba(160,82,45,0.1) 100%);
+            pointer-events: none;
+        }
+
+        .hero-content h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+
+        .hero-content p {
+            font-size: 1.3rem;
+            margin-bottom: 2rem;
+            max-width: 600px;
+        }
+
+        .cta-button {
+            background: linear-gradient(135deg, #D2691E, #CD853F);
+            color: white;
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 30px;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-decoration: none;
+            display: inline-block;
+            box-shadow: 0 4px 15px rgba(210, 105, 30, 0.3);
+        }
+
+        .cta-button:hover {
+            background: linear-gradient(135deg, #CD853F, #D2691E);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(210, 105, 30, 0.4);
+        }
+
+        /* Services Section */
+        .services {
+            padding: 5rem 0;
+            background: white;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            color: #8B4513;
+            margin-bottom: 3rem;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(135deg, #D2691E, #CD853F);
+            border-radius: 2px;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .service-card {
+            background: linear-gradient(145deg, #ffffff, #f8f9fa);
+            padding: 2rem;
+            border-radius: 20px;
+            box-shadow: 0 8px 25px rgba(139, 69, 19, 0.1);
+            text-align: center;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(139, 69, 19, 0.1);
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 35px rgba(139, 69, 19, 0.2);
+            border-color: rgba(210, 105, 30, 0.3);
+        }
+
+        .service-icon {
+            font-size: 3rem;
+            color: #D2691E;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(210, 105, 30, 0.2);
+        }
+
+        .service-card h3 {
+            color: #8B4513;
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+        }
+
+        /* Gallery Section */
+        .gallery {
+            padding: 5rem 0;
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .gallery-item {
+            position: relative;
+            height: 280px;
+            border-radius: 15px;
+            overflow: hidden;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            background: linear-gradient(135deg, #D2B48C, #DEB887);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+        }
+
+        /* Gallery Item Blur Effect */
+        .gallery-content {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 2rem;
+            transition: all 0.3s ease;
+        }
+
+        /* Başlangıçta arka plan bulanık (sadece resim olan gallery-content için) */
+        .gallery-content[style*="background-image"]::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: inherit;
+            background-size: inherit;
+            background-position: inherit;
+            background-repeat: inherit;
+            filter: blur(3px);
+            z-index: 1;
+            transition: filter 0.3s ease;
+        }
+
+        /* Normal gallery items without background images */
+        .gallery-content:not([style*="background-image"]) {
+            background: linear-gradient(135deg, rgba(139,69,19,0.8), rgba(160,82,45,0.9));
+            color: white;
+        }
+
+        .gallery-content:not([style*="background-image"])::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300"><defs><pattern id="woodgrain" patternUnits="userSpaceOnUse" width="100" height="100"><rect width="100" height="100" fill="%23DEB887"/><path d="M0,25 Q25,15 50,25 T100,25" stroke="%23CD853F" stroke-width="2" fill="none" opacity="0.6"/><path d="M0,50 Q30,40 60,50 T120,50" stroke="%23D2691E" stroke-width="1" fill="none" opacity="0.4"/><path d="M0,75 Q20,65 40,75 T80,75" stroke="%23A0522D" stroke-width="1" fill="none" opacity="0.3"/></pattern></defs><rect width="400" height="300" fill="url(%23woodgrain)"/></svg>');
+            background-size: cover;
+            opacity: 0.3;
+            transition: opacity 0.3s ease;
+        }
+
+        .gallery-title,
+        .gallery-subtitle {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+            transition: all 0.3s ease;
+            filter: blur(0px);
+        }
+
+        .gallery-title {
+            font-size: 1.3rem;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+        }
+
+        .gallery-subtitle {
+            font-size: 0.9rem;
+            opacity: 0.9;
+            font-style: italic;
+        }
+
+        .gallery-icon {
+            position: relative;
+            z-index: 2;
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            color: #F4A460;
+            transition: all 0.3s ease;
+            filter: blur(0px);
+        }
+
+        /* Hover Effects */
+        .gallery-item:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.2);
+        }
+
+        /* Blur effects on hover */
+        .gallery-item:hover .gallery-content[style*="background-image"]::before {
+            filter: blur(0px); /* Arka plan netleşir */
+        }
+
+        .gallery-item:hover .gallery-title,
+        .gallery-item:hover .gallery-subtitle {
+            filter: blur(2px); /* Yazılar bulanıklaşır */
+        }
+
+        /* Normal gallery items hover effect */
+        .gallery-item:hover .gallery-content:not([style*="background-image"])::before {
+            opacity: 0.5;
+        }
+
+        .gallery-item:hover .gallery-icon {
+            filter: blur(2px); /* Icon da bulanıklaşır */
+        }
+
+        /* Pricing Section */
+        .pricing {
+            padding: 5rem 0;
+            background: white;
+        }
+
+        .pricing-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+            box-shadow: 0px 0px 10px black;
+            border-radius: 15px;
+        }
+
+        .pricing-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .pricing-card.featured {
+            border: 3px solid #D2691E;
+            transform: scale(1.05);
+            background: linear-gradient(145deg, #ffffff, #f8f9fa);
+        }
+
+        .pricing-card.featured::before {
+            content: "EN POPÜLER";
+            position: absolute;
+            top: 1rem;
+            right: -2rem;
+            background: linear-gradient(135deg, #D2691E, #CD853F);
+            color: white;
+            padding: 0.5rem 3rem;
+            transform: rotate(45deg);
+            font-size: 0.8rem;
+            font-weight: bold;
+        }
+
+        .price {
+            font-size: 2.5rem;
+            color: #D2691E;
+            font-weight: bold;
+            margin: 1rem 0;
+        }
+
+        .price-features {
+            list-style: none;
+            margin: 1.5rem 0;
+        }
+
+        .price-features li {
+            padding: 0.5rem 0;
+            border-bottom: 1px solid #eee;
+        }
+
+        .price-features li:before {
+            content: "✓";
+            color: #27ae60;
+            font-weight: bold;
+            margin-right: 10px;
+        }
+
+        /* Contact Section */
+        .contact {
+            padding: 5rem 0;
+            background: linear-gradient(135deg, #8B4513, #A0522D);
+            color: white;
+            text-align: center;
+        }
+
+        .contact-info {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .contact-item {
+            padding: 1.5rem;
+        }
+
+        .contact-item i {
+            font-size: 2rem;
+            color: #F4A460;
+            margin-bottom: 1rem;
+        }
+
+        .whatsapp-contact {
+            background: #25d366;
+            padding: 2rem;
+            border-radius: 15px;
+            margin-top: 2rem;
+            cursor: pointer;
+            transition: transform 0.3s;
+        }
+
+        .whatsapp-contact:hover {
+            transform: translateY(-5px);
+        }
+
+        /* Footer */
+        .footer {
+            background: #1a1a1a;
+            color: white;
+            text-align: center;
+            padding: 2rem;
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            .nav-menu {
+                display: none;
+            }
+
+            .hero-content h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero-content p {
+                font-size: 1.1rem;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+
+            .pricing-card.featured {
+                transform: none;
+            }
+        }
+
+        /* Smooth Scrolling */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* --- Yeni Animasyon CSS'i --- */
+        /* Başlangıçta görünmez ve hafif aşağıda olsun */
+        .animate-me {
+            opacity: 0; 
+            transform: translateY(30px); 
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out; /* Animasyon süresi */
+        }
+        
+        /* Ekran göründüğünde aktif olacak sınıf */
+        .animate-me.fade-in {
+            opacity: 1;
+            transform: translateY(0); 
+        }
+
+        /* Hero'daki 'fade-in' sınıfını artık kullanmıyoruz, hero'yu animate-me yapmadık çünkü başta görünmesi lazım */
+        /* Eğer hero içindeki bir elemanı animasyonla başlatmak istersen, ona da 'animate-me' sınıfını ekle */
+
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="nav-container">
+            <a href="#" class="logo">
+                <i class="fas fa-hammer"></i> Gülgen Mobilya
+            </a>
+            <nav>
+                <ul class="nav-menu">
+                    <li><a href="#anasayfa">Ana Sayfa</a></li>
+                    <li><a href="#hizmetler">Hizmetlerimiz</a></li>
+                    <li><a href="#galeri">Galeri</a></li>
+                    <li><a href="#iletisim">İletişim</a></li>
+                </ul>
+            </nav>
+            <a href="https://wa.me/905423940073" target="_blank" class="whatsapp-btn">
+                <i class="fab fa-whatsapp"></i> WhatsApp
+            </a>
+        </div>
+    </header>
+
+    <section id="anasayfa" class="hero">
+        <div class="hero-content"> 
+            <h1>Gülgen Mobilya</h1>
+            <p>Hayalinizdeki mobilyaları gerçeğe dönüştürüyoruz. Mutfaktan dolaba, yatak odasından özel tasarıma kadar tüm marangozluk ihtiyaçlarınız için buradayız.</p>
+            <a href="#hizmetler" class="cta-button">Hizmetlerimizi Keşfedin</a>
+        </div>
+    </section>
+
+    <section id="hizmetler" class="services">
+        <div class="container">
+            <h2 class="section-title animate-me">Hizmetlerimiz</h2> <div class="services-grid">
+                <div class="service-card animate-me">
+                    <div class="service-icon">
+                        <i class="fas fa-utensils"></i>
+                    </div>
+                    <h3>Mutfak Mobilyası</h3>
+                    <p>Modern ve fonksiyonel mutfak tasarımları. Ölçüye özel mutfak dolapları, tezgahlar ve aksesuarlar.</p>
+                </div>
+                <div class="service-card animate-me">
+                    <div class="service-icon">
+                        <i class="fas fa-door-open"></i>
+                    </div>
+                    <h3>Dolap & Gardırop</h3>
+                    <p>Yatak odası, vestier ve özel alan dolabı tasarımları. Maksimum alan kullanımı ile pratik çözümler.</p>
+                </div>
+                <div class="service-card animate-me">
+                    <div class="service-icon">
+                        <i class="fas fa-couch"></i>
+                    </div>
+                    <h3>Oturma Grupları</h3>
+                    <p>Salon ve oturma odası mobilyaları. TV üniteleri, sehpalar ve özel tasarım oturma grupları.</p>
+                </div>
+                <div class="service-card animate-me">
+                    <div class="service-icon">
+                        <i class="fas fa-bed"></i>
+                    </div>
+                    <h3>Yatak Odası</h3>
+                    <p>Yatak başlığı, komodin, şifoniyer ve yatak odası takımları. Kişiye özel tasarım seçenekleri.</p>
+                </div>
+                <div class="service-card animate-me">
+                    <div class="service-icon">
+                        <i class="fas fa-tools"></i>
+                    </div>
+                    <h3>Özel Projeler</h3>
+                    <p>Merdiven, lambri, ahşap dekorasyon ve özel marangozluk projeleri. Hayal ettiğiniz her şey.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="galeri" class="gallery">
+        <div class="container">
+            <h2 class="section-title animate-me">Çalışmalarımız</h2> <div class="gallery-grid">
+                <div class="gallery-item animate-me">
+                    <div style="background-image: url(resim1.jpg);" class="gallery-content">
+                        <div style="color:black; text-shadow:0px 0px 2px white" class="gallery-title">Mutfak Tasarımı</div>
+                    </div>
+                </div>
+                <div class="gallery-item animate-me">
+                    <div style="background-image: url(resim2.jpg);" class="gallery-content">
+                        <div style="color:black; text-shadow:0px 0px 2px white" class="gallery-title">Yatak Odası Takımı</div>
+                    </div>
+                </div>
+                <div class="gallery-item animate-me">
+                    <div style="background-image: url(resim3.jpg);" class="gallery-content">
+                        <div style="color:black; text-shadow:0px 0px 2px white" class="gallery-title">Özel Dolap Tasarımı</div>
+                    </div>
+                </div>
+                <div class="gallery-item animate-me">
+                    <div style="background-image: url(resim4.jpg);" class="gallery-content">
+                        <div style="color:black; text-shadow:0px 0px 2px white" class="gallery-title">TV Ünitesi & Dekor</div>
+                    </div>
+                </div>
+                <div class="gallery-item animate-me">
+                    <div style="background-image: url(resim5.jpg);" class="gallery-content">
+                        <div style="color:black; text-shadow:0px 0px 2px white" class="gallery-title">Çocuk Odası</div>
+                    </div>
+                </div>
+                <div class="gallery-item animate-me">
+                    <div style="background-image: url(resim6.jpg);" class="gallery-content">
+                        <div style="color:black; text-shadow:0px 0px 2px white" class="gallery-title">Özel İstekleriniz</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="iletisim" class="contact">
+        <div class="container">
+            <h2 class="section-title animate-me" style="color:black; text-shadow:0px 0px 10px white">İletişim</h2> <p class="animate-me">Projeleriniz için bizimle iletişime geçin. Tüm sipariş ve sorularınız için WhatsApp'tan iletişime geçebilirsiniz.</p>
+            
+            <div class="contact-info">
+                <div class="contact-item animate-me">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <h3>Adres</h3>
+                    <p>Kartaltepe, Ahmet Doğan Yılmaz Sokağı No.1<br><strong>Bakırköy/İstanbul</strong></p>
+                </div>
+                <div class="contact-item animate-me">
+                    <i class="fas fa-clock"></i>
+                    <h3>Çalışma Saatleri</h3>
+                    <p>Pazartesi - Cumartesi<br>09:00 - 19:00<br><strong>Pazar Kapalı</strong></p>
+                </div>
+                <div class="contact-item animate-me">
+                    <i class="fas fa-award"></i>
+                    <h3>Deneyim</h3>
+                    <p>10+ Yıl Tecrübe<br>500+ Mutlu Müşteri</p>
+                </div>
+            </div>
+            <div class="whatsapp-contact animate-me" onclick="window.open('https://wa.me/905423940073', '_blank')">
+                <i class="fab fa-whatsapp" style="font-size: 3rem; margin-bottom: 1rem;"></i>
+                <h3>WhatsApp İletişim</h3>
+                <strong>+90 542 394 00 73</strong>
+                <p>Hemen mesaj gönderin!</p>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2025 Gülgen Mobilya. Tüm hakları saklıdır. | Özel Tasarım Marangozluk Hizmetleri</p>
+        </div>
+    </footer>
+
+<script>
+    // Intersection Observer ayarları: threshold 0.1 idi, şimdi 0 yaptık.
+    // 0, elementin tek bir pikseli bile görünür olduğunda/görünmez olduğunda tetikle demektir.
+    const observerOptions = {
+        threshold: 0, 
+        rootMargin: '0px 0px -50px 0px'
+    };
+
+    const observer = new IntersectionObserver(function(entries) {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                // Ekrana giriyor: fade-in sınıfını ekle (Görünür yap)
+                entry.target.classList.add('fade-in');
+            } else {
+                // Ekrandan çıkıyor (Hem yukarı hem aşağı kaydırmada): 
+                // fade-in sınıfını kaldır (Tekrar başlangıç pozisyonuna/görünmezliğe dön)
+                entry.target.classList.remove('fade-in');
+            }
+        });
+        
+        // Bu sefer unobserve kullanmıyoruz ki sürekli dinlemeye devam etsin.
+
+    }, observerOptions);
+
+    // Animasyon istediğimiz tüm elemanları seçip gözlemlemeye başla
+    document.querySelectorAll('.animate-me').forEach(el => {
+        observer.observe(el);
+    });
+</script>
+    
+</body>
+</html>
