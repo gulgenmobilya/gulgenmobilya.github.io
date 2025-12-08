@@ -893,7 +893,16 @@
     document.querySelectorAll('.animate-me').forEach(el => {
         observer.observe(el);
     });
+
+    // Sağ tıklamayı engelle
+document.addEventListener('contextmenu', e => e.preventDefault());
+
+// Mobilde basılı tutmayı engelle
+document.addEventListener('touchstart', e => { if(e.touches.length > 1) e.preventDefault(); }, { passive: false });
+document.addEventListener('gesturestart', e => e.preventDefault());
+
 </script>
+
     
 </body>
 </html>
