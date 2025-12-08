@@ -344,10 +344,11 @@
             filter: blur(2px); /* Icon da bulanıklaşır */
         }
 
-        /* Pricing Section */
+        /* Pricing Section (Bu kısım senin orijinal kodunda var, ama modal stili eklenmediği için boş bıraktım.) */
         .pricing {
             padding: 5rem 0;
             background: white;
+            /* Orijinal kodundaki diğer pricing stilleri buraya gelecek */
         }
 
         .pricing-cards {
@@ -411,7 +412,7 @@
             font-weight: bold;
             margin-right: 10px;
         }
-
+        
         /* Contact Section */
         .contact {
             padding: 5rem 0;
@@ -498,8 +499,112 @@
             transform: translateY(0); 
         }
 
-        /* Hero'daki 'fade-in' sınıfını artık kullanmıyoruz, hero'yu animate-me yapmadık çünkü başta görünmesi lazım */
-        /* Eğer hero içindeki bir elemanı animasyonla başlatmak istersen, ona da 'animate-me' sınıfını ekle */
+        /* Yeni Lightbox (Modal) Stilleri */
+        .lightbox {
+            display: none; /* Başlangıçta gizli */
+            position: fixed;
+            z-index: 2000; /* Header'dan daha yüksek */
+            padding-top: 50px;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0, 0, 0, 0.95); /* Koyu arkaplan */
+            backdrop-filter: blur(5px);
+            -webkit-backdrop-filter: blur(5px);
+        }
+
+        .lightbox-content {
+            position: relative;
+            margin: auto;
+            display: block;
+            width: 80%;
+            max-width: 1000px;
+            max-height: 90vh;
+            animation-name: zoom;
+            animation-duration: 0.6s;
+            text-align: center;
+        }
+
+        #lightbox-image {
+            width: 100%;
+            height: auto;
+            max-height: 85vh;
+            object-fit: contain; /* Resmin tamamını göster */
+            display: block;
+            border-radius: 10px;
+        }
+
+        /* Kapatma butonu */
+        .close-btn {
+            position: absolute;
+            top: 15px;
+            right: 35px;
+            color: #f1f1f1;
+            font-size: 40px;
+            font-weight: bold;
+            transition: 0.3s;
+            cursor: pointer;
+            z-index: 2001;
+        }
+
+        .close-btn:hover,
+        .close-btn:focus {
+            color: #bbb;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+.slider-container {
+    position: relative;
+    width: 100%;
+    height: 400px; /* veya istediğin sabit yükseklik */
+    overflow: hidden;
+}
+
+.prev-btn, .next-btn {
+    cursor: pointer;
+    position: absolute;
+    top: 180px; /* sabit px değeri, resim boyutu farketmez */
+    padding: 16px;
+    color: white;
+    font-weight: bold;
+    font-size: 20px;
+    border-radius: 3px;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.prev-btn { left: 0; }
+.next-btn { right: 0; }
+
+
+        .next-btn {
+            right: 0;
+            border-radius: 3px 0 0 3px;
+        }
+
+        .prev-btn:hover, .next-btn:hover {
+            background-color: rgba(0, 0, 0, 0.8);
+        }
+
+        /* Zoom Animasyonu */
+        @keyframes zoom {
+            from {transform: scale(0.8)}
+            to {transform: scale(1)}
+        }
+
+        /* Mobil için küçültme */
+        @media only screen and (max-width: 700px){
+            .lightbox-content {
+                width: 100%;
+            }
+            .prev-btn, .next-btn {
+                font-size: 16px;
+                padding: 10px;
+                margin-top: -30px;
+            }
+        }
 
     </style>
 </head>
@@ -507,7 +612,7 @@
     <header class="header">
         <div class="nav-container">
             <a href="#" class="logo">
-                <span class="material-symbols-outlined" style="font-size: 35px;">carpenter</span> Gülgen Mobilya
+                <i class="fa-solid fa-tree"></i> Gülgen Mobilya
             </a>
             <nav>
                 <ul class="nav-menu">
@@ -533,7 +638,8 @@
 
     <section id="hizmetler" class="services">
         <div class="container">
-            <h2 class="section-title animate-me">Hizmetlerimiz</h2> <div class="services-grid">
+            <h2 class="section-title animate-me">Hizmetlerimiz</h2> 
+            <div class="services-grid">
                 <div class="service-card animate-me">
                     <div class="service-icon">
                         <i class="fas fa-utensils"></i>
@@ -550,13 +656,6 @@
                 </div>
                 <div class="service-card animate-me">
                     <div class="service-icon">
-                        <i class="fas fa-couch"></i>
-                    </div>
-                    <h3>Oturma Grupları</h3>
-                    <p>Salon ve oturma odası mobilyaları. TV üniteleri, sehpalar ve özel tasarım oturma grupları.</p>
-                </div>
-                <div class="service-card animate-me">
-                    <div class="service-icon">
                         <i class="fas fa-bed"></i>
                     </div>
                     <h3>Yatak Odası</h3>
@@ -567,7 +666,7 @@
                         <i class="fas fa-tools"></i>
                     </div>
                     <h3>Özel Projeler</h3>
-                    <p>Merdiven, lambri, ahşap dekorasyon ve özel marangozluk projeleri. Hayal ettiğiniz her şey.</p>
+                    <p>Ahşap dekorasyon ve özel marangozluk projeleri. Hayal ettiğiniz her şey.</p>
                 </div>
             </div>
         </div>
@@ -575,40 +674,51 @@
 
     <section id="galeri" class="gallery">
         <div class="container">
-            <h2 class="section-title animate-me">Çalışmalarımız</h2> <div class="gallery-grid">
-                <div class="gallery-item animate-me">
-                    <div style="background-image: url(resim1.jpg);" class="gallery-content">
-                        <div style="color:black; text-shadow:0px 0px 2px white" class="gallery-title">Mutfak Tasarımı</div>
+            <h2 class="section-title animate-me">Çalışmalarımız</h2>
+            <div class="gallery-grid">
+                
+                <div class="gallery-item animate-me" data-category="mutfak">
+                    <div style="background-image: url(mutfak-1.jpg);" class="gallery-content" data-full-src="mutfak-1.jpg">
+                        <div style="color:white; text-shadow:0px 0px 2px black" class="gallery-title">Mutfak Tasarımı</div>
                     </div>
                 </div>
-                <div class="gallery-item animate-me">
-                    <div style="background-image: url(resim2.jpg);" class="gallery-content">
-                        <div style="color:black; text-shadow:0px 0px 2px white" class="gallery-title">Yatak Odası Takımı</div>
+                <div class="gallery-item animate-me" data-category="yatak">
+                    <div style="background-image: url(yatak-1.jpg);" class="gallery-content" data-full-src="yatak-1.jpg">
+                        <div style="color:white; text-shadow:0px 0px 2px black" class="gallery-title">Yatak Odası Takımı</div>
                     </div>
                 </div>
-                <div class="gallery-item animate-me">
-                    <div style="background-image: url(resim3.jpg);" class="gallery-content">
-                        <div style="color:black; text-shadow:0px 0px 2px white" class="gallery-title">Özel Dolap Tasarımı</div>
+                <div class="gallery-item animate-me" data-category="dolap">
+                    <div style="background-image: url(dolap-1.jpg);" class="gallery-content" data-full-src="dolap-1.jpg">
+                        <div style="color:white; text-shadow:0px 0px 2px black" class="gallery-title">Özel Dolap Tasarımı</div>
                     </div>
                 </div>
-                <div class="gallery-item animate-me">
-                    <div style="background-image: url(resim4.jpg);" class="gallery-content">
-                        <div style="color:black; text-shadow:0px 0px 2px white" class="gallery-title">TV Ünitesi & Dekor</div>
+                <div class="gallery-item animate-me" data-category="tv">
+                    <div style="background-image: url(tv-1.jpg);" class="gallery-content" data-full-src="tv-1.jpg">
+                        <div style="color:white; text-shadow:0px 0px 2px black" class="gallery-title">TV Ünitesi & Dekor</div>
                     </div>
                 </div>
-                <div class="gallery-item animate-me">
-                    <div style="background-image: url(resim5.jpg);" class="gallery-content">
-                        <div style="color:black; text-shadow:0px 0px 2px white" class="gallery-title">Çocuk Odası</div>
+                <div class="gallery-item animate-me" data-category="cocuk">
+                    <div style="background-image: url(cocuk-1.jpg);" class="gallery-content" data-full-src="cocuk-1.jpg">
+                        <div style="color:white; text-shadow:0px 0px 2px black" class="gallery-title">Çocuk Odası</div>
                     </div>
                 </div>
-                <div class="gallery-item animate-me">
-                    <div style="background-image: url(resim6.jpg);" class="gallery-content">
-                        <div style="color:black; text-shadow:0px 0px 2px white" class="gallery-title">Özel İstekleriniz</div>
+                <div class="gallery-item animate-me" data-category="ozel">
+                    <div style="background-image: url(ozel-1.jpg);" class="gallery-content" data-full-src="ozel-1.jpg">
+                        <div style="color:white; text-shadow:0px 0px 2px black" class="gallery-title">Özel İstekleriniz</div>
                     </div>
                 </div>
             </div>
         </div>
     </section>
+
+    <div id="lightbox" class="lightbox">
+        <span class="close-btn">&times;</span>
+        <div class="lightbox-content">
+            <img id="lightbox-image" src="" alt="Büyütülmüş Resim">
+            <a class="prev-btn">&#10094;</a>
+            <a class="next-btn">&#10095;</a>
+        </div>
+    </div>
 
     <section id="iletisim" class="contact">
         <div class="container">
@@ -647,8 +757,123 @@
     </footer>
 
 <script>
-    // Intersection Observer ayarları: threshold 0.1 idi, şimdi 0 yaptık.
-    // 0, elementin tek bir pikseli bile görünür olduğunda/görünmez olduğunda tetikle demektir.
+    // ********** YENİ LIGHTBOX (MODAL) VE KAYDIRMA KODU **********
+
+    const lightbox = document.getElementById('lightbox');
+    const lightboxImage = document.getElementById('lightbox-image');
+    const closeBtn = document.querySelector('.close-btn');
+    const prevBtn = document.querySelector('.prev-btn');
+    const nextBtn = document.querySelector('.next-btn');
+    const galleryContents = document.querySelectorAll('.gallery-content');
+    
+    // Tüm galeri öğelerini alıyoruz ki kategorilere göre gruplayabilelim
+    const galleryItems = document.querySelectorAll('.gallery-item'); 
+
+    let currentCategory = ''; 
+    let currentImageIndex = 0;   
+    const IMAGE_EXTENSION = 'jpg'; 
+
+    // Her kategori için kaç resim olduğunu dinamik olarak saklayacak nesne
+    // Şu anki HTML'e göre varsayılan olarak kaç resim varsa onu giriyoruz (Senin için 6)
+    const categoryImageCounts = {
+        'mutfak': 7,
+        'yatak': 10,
+        'dolap': 5,
+        'tv': 1,
+        'cocuk': 10,
+        'ozel': 6
+        // NOT: Eğer bir kategoride daha az veya daha çok resmin varsa, bu sayıları DÜZELT!
+        // Örneğin Mutfak için 10 resim varsa 'mutfak': 10 yapmalısın.
+    };
+    
+    // İlk resim için gerekli bilgiyi kaydet
+    function getInitialImageDetails(content) {
+        const item = content.closest('.gallery-item');
+        const category = item.getAttribute('data-category');
+        // İlk resim için index her zaman 1'dir (mutfak-1.jpg, dolap-1.jpg...)
+        return { category, initialIndex: 1 };
+    }
+
+    // Resmi lightbox'ta gösteren ana fonksiyon
+    function showImage(category, index) {
+        let actualIndex = index;
+        
+        // Bu kategorideki maksimum resim sayısını al
+        const maxIndex = categoryImageCounts[category] || 1; // Eğer yoksa 1 kabul et
+
+        // --- DÖNGÜ KONTROLLERİ ---
+        
+        // İleri gitmek istedi ve bittiyse (Max'tan sonra ileri)
+        if (actualIndex > maxIndex) {
+            actualIndex = 1; // En başa dön
+        } 
+        // Geri gitmek istedi ve bittiyse (1. resimden önce geri)
+        else if (actualIndex < 1) {
+            actualIndex = maxIndex; // En sona dön
+        }
+        
+        // Final dosya ismini oluştur
+        const finalFilename = `${category}-${actualIndex}.${IMAGE_EXTENSION}`;
+
+        if (finalFilename) {
+            currentCategory = category;
+            currentImageIndex = actualIndex;
+            
+            lightboxImage.src = finalFilename;
+            lightbox.style.display = 'block';
+
+            // İleri/Geri düğmeleri her zaman gösterilir (çünkü döngü var)
+            nextBtn.style.display = 'block';
+            prevBtn.style.display = 'block';
+        } 
+    }
+
+    // İlk resim için gerekli bilgiyi kaydet ve lightbox'ı aç
+    galleryContents.forEach(content => {
+        content.addEventListener('click', function() {
+            // Tıklayınca her zaman 1. resimden başlat
+            const { category, initialIndex } = getInitialImageDetails(this);
+            showImage(category, initialIndex);
+        });
+    });
+
+    // Kapatma düğmesi
+    closeBtn.onclick = function() {
+        lightbox.style.display = 'none';
+    };
+
+    // Next butonu
+    nextBtn.onclick = function() {
+        showImage(currentCategory, currentImageIndex + 1);
+    };
+
+    // Prev butonu
+    prevBtn.onclick = function() {
+        showImage(currentCategory, currentImageIndex - 1);
+    };
+
+    // Lightbox dışına tıklayınca kapatma
+    window.onclick = function(event) {
+        if (event.target == lightbox) {
+            lightbox.style.display = 'none';
+        }
+    };
+
+    // Klavye ile kapatma/kaydırma
+    document.addEventListener('keydown', function(event) {
+        if (lightbox.style.display === 'block') {
+            if (event.key === 'Escape') { 
+                lightbox.style.display = 'none';
+            } else if (event.key === 'ArrowRight') { 
+                showImage(currentCategory, currentImageIndex + 1);
+            } else if (event.key === 'ArrowLeft') { 
+                showImage(currentCategory, currentImageIndex - 1);
+            }
+        }
+    });
+
+    // ********** MEVCUT SCROLL ANIMASYON KODU **********
+
     const observerOptions = {
         threshold: 0, 
         rootMargin: '0px 0px -50px 0px'
@@ -657,20 +882,14 @@
     const observer = new IntersectionObserver(function(entries) {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
-                // Ekrana giriyor: fade-in sınıfını ekle (Görünür yap)
                 entry.target.classList.add('fade-in');
             } else {
-                // Ekrandan çıkıyor (Hem yukarı hem aşağı kaydırmada): 
-                // fade-in sınıfını kaldır (Tekrar başlangıç pozisyonuna/görünmezliğe dön)
                 entry.target.classList.remove('fade-in');
             }
         });
-        
-        // Bu sefer unobserve kullanmıyoruz ki sürekli dinlemeye devam etsin.
 
     }, observerOptions);
 
-    // Animasyon istediğimiz tüm elemanları seçip gözlemlemeye başla
     document.querySelectorAll('.animate-me').forEach(el => {
         observer.observe(el);
     });
