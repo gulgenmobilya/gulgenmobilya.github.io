@@ -7,6 +7,7 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&icon_names=carpenter" />
     <style> 
+        /* --- Temel Ayarlar ve Reset --- */
         * {
             margin: 0;
             padding: 0;
@@ -21,7 +22,17 @@
             background: #f8f9fa;
         }
 
-        /* Header & Navigation */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        /* --- Header & Navigation --- */
         .header {
             position: sticky;
             top: 0;
@@ -85,7 +96,7 @@
             box-shadow: 0 5px 15px rgba(37, 211, 102, 0.3);
         }
 
-        /* Hero Section */
+        /* --- Hero Section --- */
         .hero {
             background: linear-gradient(135deg, rgba(139,69,19,0.9), rgba(160,82,45,0.8)), 
                         url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 600"><defs><pattern id="wood" patternUnits="userSpaceOnUse" width="60" height="60"><rect width="60" height="60" fill="%23D2B48C"/><path d="M0,30 Q15,20 30,30 T60,30" stroke="%23CD853F" stroke-width="2" fill="none"/><path d="M0,45 Q20,35 40,45 T80,45" stroke="%23DEB887" stroke-width="1" fill="none"/></pattern></defs><rect width="1200" height="600" fill="url(%23wood)"/><g fill="%23A0522D" opacity="0.3"><rect x="100" y="200" width="200" height="200" rx="10"/><rect x="400" y="150" width="300" height="300" rx="15"/><rect x="800" y="180" width="250" height="240" rx="12"/></g></svg>');
@@ -143,16 +154,10 @@
             box-shadow: 0 10px 25px rgba(210, 105, 30, 0.4);
         }
 
-        /* Services Section */
+        /* --- Services Section --- */
         .services {
             padding: 5rem 0;
             background: white;
-        }
-
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 2rem;
         }
 
         .section-title {
@@ -211,7 +216,82 @@
             font-size: 1.5rem;
         }
 
-        /* Gallery Section */
+        /* --- Pricing Section (KOD 2'den Eklendi) --- */
+        .pricing {
+            padding: 5rem 0;
+            background: #f8f9fa; /* Hafif arkaplan */
+        }
+
+        .pricing-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .pricing-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            transition: transform 0.3s ease;
+        }
+        
+        .pricing-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .pricing-card.featured {
+            border: 3px solid #D2691E;
+            transform: scale(1.05);
+            background: linear-gradient(145deg, #ffffff, #f8f9fa);
+        }
+
+        .pricing-card.featured::before {
+            content: "EN POPÜLER";
+            position: absolute;
+            top: 1rem;
+            right: -2rem;
+            background: linear-gradient(135deg, #D2691E, #CD853F);
+            color: white;
+            padding: 0.5rem 3rem;
+            transform: rotate(45deg);
+            font-size: 0.8rem;
+            font-weight: bold;
+        }
+
+        .price {
+            font-size: 2.5rem;
+            color: #D2691E;
+            font-weight: bold;
+            margin: 1rem 0;
+        }
+
+        .price-features {
+            list-style: none;
+            margin: 1.5rem 0;
+            text-align: left;
+        }
+
+        .price-features li {
+            padding: 0.5rem 0;
+            border-bottom: 1px solid #eee;
+        }
+
+        .price-features li:last-child {
+            border-bottom: none;
+        }
+
+        .price-features li:before {
+            content: "✓";
+            color: #27ae60;
+            font-weight: bold;
+            margin-right: 10px;
+        }
+        /* --- Gallery Section --- */
         .gallery {
             padding: 5rem 0;
             background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
@@ -252,7 +332,6 @@
             transition: all 0.3s ease;
         }
 
-        /* Başlangıçta arka plan bulanık (sadece resim olan gallery-content için) */
         .gallery-content[style*="background-image"]::before {
             content: '';
             position: absolute;
@@ -269,7 +348,6 @@
             transition: filter 0.3s ease;
         }
 
-        /* Normal gallery items without background images */
         .gallery-content:not([style*="background-image"]) {
             background: linear-gradient(135deg, rgba(139,69,19,0.8), rgba(160,82,45,0.9));
             color: white;
@@ -319,101 +397,29 @@
             filter: blur(0px);
         }
 
-        /* Hover Effects */
         .gallery-item:hover {
             transform: translateY(-10px) scale(1.02);
             box-shadow: 0 15px 35px rgba(0,0,0,0.2);
         }
 
-        /* Blur effects on hover */
         .gallery-item:hover .gallery-content[style*="background-image"]::before {
-            filter: blur(0px); /* Arka plan netleşir */
+            filter: blur(0px);
         }
 
         .gallery-item:hover .gallery-title,
         .gallery-item:hover .gallery-subtitle {
-            filter: blur(2px); /* Yazılar bulanıklaşır */
+            filter: blur(2px);
         }
 
-        /* Normal gallery items hover effect */
         .gallery-item:hover .gallery-content:not([style*="background-image"])::before {
             opacity: 0.5;
         }
 
         .gallery-item:hover .gallery-icon {
-            filter: blur(2px); /* Icon da bulanıklaşır */
+            filter: blur(2px);
         }
 
-        /* Pricing Section (Bu kısım senin orijinal kodunda var, ama modal stili eklenmediği için boş bıraktım.) */
-        .pricing {
-            padding: 5rem 0;
-            background: white;
-            /* Orijinal kodundaki diğer pricing stilleri buraya gelecek */
-        }
-
-        .pricing-cards {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-            margin-top: 3rem;
-            box-shadow: 0px 0px 10px black;
-            border-radius: 15px;
-        }
-
-        .pricing-card {
-            background: white;
-            padding: 2rem;
-            border-radius: 15px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-            text-align: center;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .pricing-card.featured {
-            border: 3px solid #D2691E;
-            transform: scale(1.05);
-            background: linear-gradient(145deg, #ffffff, #f8f9fa);
-        }
-
-        .pricing-card.featured::before {
-            content: "EN POPÜLER";
-            position: absolute;
-            top: 1rem;
-            right: -2rem;
-            background: linear-gradient(135deg, #D2691E, #CD853F);
-            color: white;
-            padding: 0.5rem 3rem;
-            transform: rotate(45deg);
-            font-size: 0.8rem;
-            font-weight: bold;
-        }
-
-        .price {
-            font-size: 2.5rem;
-            color: #D2691E;
-            font-weight: bold;
-            margin: 1rem 0;
-        }
-
-        .price-features {
-            list-style: none;
-            margin: 1.5rem 0;
-        }
-
-        .price-features li {
-            padding: 0.5rem 0;
-            border-bottom: 1px solid #eee;
-        }
-
-        .price-features li:before {
-            content: "✓";
-            color: #27ae60;
-            font-weight: bold;
-            margin-right: 10px;
-        }
-        
-        /* Contact Section */
+        /* --- Contact Section --- */
         .contact {
             padding: 5rem 0;
             background: linear-gradient(135deg, #8B4513, #A0522D);
@@ -451,7 +457,7 @@
             transform: translateY(-5px);
         }
 
-        /* Footer */
+        /* --- Footer --- */
         .footer {
             background: #1a1a1a;
             color: white;
@@ -459,7 +465,106 @@
             padding: 2rem;
         }
 
-        /* Mobile Responsive */
+        /* --- Animasyonlar --- */
+        .animate-me {
+            opacity: 0; 
+            transform: translateY(30px); 
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        }
+        
+        .animate-me.fade-in {
+            opacity: 1;
+            transform: translateY(0); 
+        }
+
+        /* --- Lightbox (Modal) Stilleri --- */
+        /* KOD 1'deki lightbox stilleri daha iyi ortalama yaptığı için onu kullandım ve ufak düzeltmeler yaptım. */
+        .lightbox {
+            display: none; 
+            align-items: center; 
+            justify-content: center; 
+            position: fixed;
+            z-index: 2000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden; 
+            background-color: rgba(0, 0, 0, 0.95);
+            backdrop-filter: blur(5px);
+            -webkit-backdrop-filter: blur(5px);
+        }
+
+        .lightbox-content {
+            position: relative;
+            display: block;
+            width: 95%; 
+            max-width: 1000px;
+            max-height: 95vh;
+            animation-name: zoom;
+            animation-duration: 0.6s;
+            text-align: center;
+        }
+
+        #lightbox-image {
+            width: auto; 
+            max-width: 100%; 
+            height: auto; 
+            max-height: 85vh; 
+            object-fit: contain;
+            display: block;
+            border-radius: 10px;
+            margin: 0 auto; 
+        }
+
+        .close-btn {
+            position: absolute;
+            top: 15px;
+            right: 25px;
+            color: #f1f1f1;
+            font-size: 40px;
+            font-weight: bold;
+            transition: 0.3s;
+            cursor: pointer;
+            z-index: 2001;
+        }
+
+        .close-btn:hover,
+        .close-btn:focus {
+            color: #bbb;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        .prev-btn, .next-btn {
+            cursor: pointer;
+            position: absolute;
+            top: 50%; 
+            transform: translateY(-50%); 
+            padding: 16px;
+            color: white;
+            font-weight: bold;
+            font-size: 24px;
+            border-radius: 3px;
+            background-color: rgba(0, 0, 0, 0.3); 
+            user-select: none;
+            z-index: 2002;
+            text-decoration: none;
+        }
+
+        .prev-btn { left: 0; border-radius: 0 5px 5px 0; }
+        .next-btn { right: 0; border-radius: 5px 0 0 5px; }
+
+        .prev-btn:hover, .next-btn:hover {
+            background-color: rgba(0, 0, 0, 0.8);
+        }
+
+        @keyframes zoom {
+            from {transform: scale(0.8)}
+            to {transform: scale(1)}
+        }
+
+        /* --- Mobile Responsive --- */
         @media (max-width: 768px) {
             .nav-menu {
                 display: none;
@@ -476,133 +581,18 @@
             .section-title {
                 font-size: 2rem;
             }
-
             .pricing-card.featured {
-                transform: none;
+                transform: none; /* Mobilde büyütmeyi kaldır */
             }
         }
 
-        /* Smooth Scrolling */
-        html {
-            scroll-behavior: smooth;
-        }
-
-        .animate-me {
-            opacity: 0; 
-            transform: translateY(30px); 
-            transition: opacity 0.6s ease-out, transform 0.6s ease-out; /* Animasyon süresi */
-        }
-        
-        /* Ekran göründüğünde aktif olacak sınıf */
-        .animate-me.fade-in {
-            opacity: 1;
-            transform: translateY(0); 
-        }
-
-        /* Yeni Lightbox (Modal) Stilleri */
-        .lightbox {
-            display: none; /* Başlangıçta gizli */
-            position: fixed;
-            z-index: 2000; /* Header'dan daha yüksek */
-            padding-top: 50px;
-            left: 0;
-            top: 0;
-            width: 100%;
-            height: 100%;
-            overflow: auto;
-            background-color: rgba(0, 0, 0, 0.95); /* Koyu arkaplan */
-            backdrop-filter: blur(5px);
-            -webkit-backdrop-filter: blur(5px);
-        }
-
-        .lightbox-content {
-            position: relative;
-            margin: auto;
-            display: block;
-            width: 80%;
-            max-width: 1000px;
-            max-height: 90vh;
-            animation-name: zoom;
-            animation-duration: 0.6s;
-            text-align: center;
-        }
-
-        #lightbox-image {
-            width: 100%;
-            height: auto;
-            max-height: 85vh;
-            object-fit: contain; /* Resmin tamamını göster */
-            display: block;
-            border-radius: 10px;
-        }
-
-        /* Kapatma butonu */
-        .close-btn {
-            position: absolute;
-            top: 15px;
-            right: 35px;
-            color: #f1f1f1;
-            font-size: 40px;
-            font-weight: bold;
-            transition: 0.3s;
-            cursor: pointer;
-            z-index: 2001;
-        }
-
-        .close-btn:hover,
-        .close-btn:focus {
-            color: #bbb;
-            text-decoration: none;
-            cursor: pointer;
-        }
-
-.slider-container {
-    position: relative;
-    width: 100%;
-    height: 400px; /* veya istediğin sabit yükseklik */
-    overflow: hidden;
-}
-
-.prev-btn, .next-btn {
-    cursor: pointer;
-    position: absolute;
-    top: 180px; /* sabit px değeri, resim boyutu farketmez */
-    padding: 16px;
-    color: white;
-    font-weight: bold;
-    font-size: 20px;
-    border-radius: 3px;
-    background-color: rgba(0, 0, 0, 0.5);
-}
-
-.prev-btn { left: 0; }
-.next-btn { right: 0; }
-
-
-        .next-btn {
-            right: 0;
-            border-radius: 3px 0 0 3px;
-        }
-
-        .prev-btn:hover, .next-btn:hover {
-            background-color: rgba(0, 0, 0, 0.8);
-        }
-
-        /* Zoom Animasyonu */
-        @keyframes zoom {
-            from {transform: scale(0.8)}
-            to {transform: scale(1)}
-        }
-
-        /* Mobil için küçültme */
         @media only screen and (max-width: 700px){
             .lightbox-content {
                 width: 100%;
             }
             .prev-btn, .next-btn {
-                font-size: 16px;
-                padding: 10px;
-                margin-top: -30px;
+                font-size: 20px;
+                padding: 15px 10px;
             }
         }
 
@@ -671,7 +661,6 @@
             </div>
         </div>
     </section>
-
     <section id="galeri" class="gallery">
         <div class="container">
             <h2 class="section-title animate-me">Çalışmalarımız</h2>
@@ -722,7 +711,8 @@
 
     <section id="iletisim" class="contact">
         <div class="container">
-            <h2 class="section-title animate-me" style="color:black; text-shadow:0px 0px 10px white">İletişim</h2> <p class="animate-me">Projeleriniz için bizimle iletişime geçin. Tüm sipariş ve sorularınız için WhatsApp'tan iletişime geçebilirsiniz.</p>
+            <h2 class="section-title animate-me" style="color:black; text-shadow:0px 0px 10px white">İletişim</h2> 
+            <p class="animate-me">Projeleriniz için bizimle iletişime geçin. Tüm sipariş ve sorularınız için WhatsApp'tan iletişime geçebilirsiniz.</p>
             
             <div class="contact-info">
                 <div class="contact-item animate-me">
@@ -757,7 +747,7 @@
     </footer>
 
 <script>
-    // ********** YENİ LIGHTBOX (MODAL) VE KAYDIRMA KODU **********
+    // ********** GALERİ LIGHTBOX VE KAYDIRMA KODU **********
 
     const lightbox = document.getElementById('lightbox');
     const lightboxImage = document.getElementById('lightbox-image');
@@ -766,15 +756,7 @@
     const nextBtn = document.querySelector('.next-btn');
     const galleryContents = document.querySelectorAll('.gallery-content');
     
-    // Tüm galeri öğelerini alıyoruz ki kategorilere göre gruplayabilelim
-    const galleryItems = document.querySelectorAll('.gallery-item'); 
-
-    let currentCategory = ''; 
-    let currentImageIndex = 0;   
-    const IMAGE_EXTENSION = 'jpg'; 
-
-    // Her kategori için kaç resim olduğunu dinamik olarak saklayacak nesne
-    // Şu anki HTML'e göre varsayılan olarak kaç resim varsa onu giriyoruz (Senin için 6)
+    // Kategoriye göre kaç resim olduğunu gösteren liste (Senin verdiğin sayılar)
     const categoryImageCounts = {
         'mutfak': 7,
         'yatak': 10,
@@ -782,37 +764,26 @@
         'tv': 1,
         'cocuk': 10,
         'ozel': 6
-        // NOT: Eğer bir kategoride daha az veya daha çok resmin varsa, bu sayıları DÜZELT!
-        // Örneğin Mutfak için 10 resim varsa 'mutfak': 10 yapmalısın.
     };
     
-    // İlk resim için gerekli bilgiyi kaydet
+    let currentCategory = ''; 
+    let currentImageIndex = 0;   
+    const IMAGE_EXTENSION = 'jpg'; 
+
     function getInitialImageDetails(content) {
         const item = content.closest('.gallery-item');
         const category = item.getAttribute('data-category');
-        // İlk resim için index her zaman 1'dir (mutfak-1.jpg, dolap-1.jpg...)
         return { category, initialIndex: 1 };
     }
 
-    // Resmi lightbox'ta gösteren ana fonksiyon
     function showImage(category, index) {
         let actualIndex = index;
-        
-        // Bu kategorideki maksimum resim sayısını al
-        const maxIndex = categoryImageCounts[category] || 1; // Eğer yoksa 1 kabul et
+        const maxIndex = categoryImageCounts[category] || 1;
 
-        // --- DÖNGÜ KONTROLLERİ ---
+        // Döngü Mantığı: Sona gelince başa, başa gelince sona döner
+        if (actualIndex > maxIndex) actualIndex = 1; 
+        else if (actualIndex < 1) actualIndex = maxIndex;
         
-        // İleri gitmek istedi ve bittiyse (Max'tan sonra ileri)
-        if (actualIndex > maxIndex) {
-            actualIndex = 1; // En başa dön
-        } 
-        // Geri gitmek istedi ve bittiyse (1. resimden önce geri)
-        else if (actualIndex < 1) {
-            actualIndex = maxIndex; // En sona dön
-        }
-        
-        // Final dosya ismini oluştur
         const finalFilename = `${category}-${actualIndex}.${IMAGE_EXTENSION}`;
 
         if (finalFilename) {
@@ -820,48 +791,42 @@
             currentImageIndex = actualIndex;
             
             lightboxImage.src = finalFilename;
-            lightbox.style.display = 'block';
-
-            // İleri/Geri düğmeleri her zaman gösterilir (çünkü döngü var)
+            // lightbox style'ını KOD 1'deki gibi 'flex' yaptık, ortalaması daha iyi
+            lightbox.style.display = 'flex'; 
+            
             nextBtn.style.display = 'block';
             prevBtn.style.display = 'block';
         } 
     }
 
-    // İlk resim için gerekli bilgiyi kaydet ve lightbox'ı aç
     galleryContents.forEach(content => {
         content.addEventListener('click', function() {
-            // Tıklayınca her zaman 1. resimden başlat
             const { category, initialIndex } = getInitialImageDetails(this);
             showImage(category, initialIndex);
         });
     });
 
-    // Kapatma düğmesi
     closeBtn.onclick = function() {
         lightbox.style.display = 'none';
     };
 
-    // Next butonu
     nextBtn.onclick = function() {
         showImage(currentCategory, currentImageIndex + 1);
     };
 
-    // Prev butonu
     prevBtn.onclick = function() {
         showImage(currentCategory, currentImageIndex - 1);
     };
 
-    // Lightbox dışına tıklayınca kapatma
     window.onclick = function(event) {
         if (event.target == lightbox) {
             lightbox.style.display = 'none';
         }
     };
 
-    // Klavye ile kapatma/kaydırma
     document.addEventListener('keydown', function(event) {
-        if (lightbox.style.display === 'block') {
+        // Kontrolü 'flex' olarak güncelledik
+        if (lightbox.style.display === 'flex') { 
             if (event.key === 'Escape') { 
                 lightbox.style.display = 'none';
             } else if (event.key === 'ArrowRight') { 
@@ -872,7 +837,7 @@
         }
     });
 
-    // ********** MEVCUT SCROLL ANIMASYON KODU **********
+    // ********** SCROLL ANIMASYON KODU **********
 
     const observerOptions = {
         threshold: 0, 
@@ -884,25 +849,21 @@
             if (entry.isIntersecting) {
                 entry.target.classList.add('fade-in');
             } else {
-                entry.target.classList.remove('fade-in');
+                // Ekrandan çıkınca animasyonu sıfırlamak istiyorsan bu kısmı kullanabilirsin
+                // entry.target.classList.remove('fade-in'); 
             }
         });
-
     }, observerOptions);
 
     document.querySelectorAll('.animate-me').forEach(el => {
         observer.observe(el);
     });
 
-    // Sağ tıklamayı engelle
-document.addEventListener('contextmenu', e => e.preventDefault());
-
-// Mobilde basılı tutmayı engelle
-document.addEventListener('touchstart', e => { if(e.touches.length > 1) e.preventDefault(); }, { passive: false });
-document.addEventListener('gesturestart', e => e.preventDefault());
+    // ********** EK KULLANICI DENEYİMİ İYİLEŞTİRMELERİ (KOD 1'den alındı) **********
+    document.addEventListener('contextmenu', e => e.preventDefault());
+    document.addEventListener('touchstart', e => { if(e.touches.length > 1) e.preventDefault(); }, { passive: false });
+    document.addEventListener('gesturestart', e => e.preventDefault());
 
 </script>
-
-    
 </body>
 </html>
